@@ -1,0 +1,19 @@
+﻿syntax = "proto3";
+
+package taskmanagement;
+
+import "google/protobuf/empty.proto";
+
+// The task message
+message MyTask {
+  int32 id = 1;
+  string description = 2;
+  bool completed = 3;
+}
+
+// The service definition
+service TaskService {
+  rpc AddTask(MyTask) returns (MyTask);
+  rpc GetTasks(google.protobuf.Empty) returns (stream MyTask);
+  rpc CompleteTask(MyTask) returns (MyTask);
+}
